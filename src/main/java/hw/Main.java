@@ -16,13 +16,13 @@ import java.util.*;
 public class Main {
 
     public static void main(final String[] args) {
-        final String IL = "Illinois";
-        final String MO = "Montana";
-        final String CA = "California";
-        final String TX = "Texas";
-        final String GA = "Georgia";
-        final String VA = "Virginia";
-        final String NY = "NewYork";
+        final String IL = Country.IL;
+        final String MO = Country.MO;
+        final String CA = Country.CA;
+        final String TX = Country.TX;
+        final String GA = Country.GA;
+        final String VA = Country.VA;
+        final String NY = Country.NY;
 
         final Graph<String, DefaultEdge> map = new SimpleGraph<>(DefaultEdge.class);
         map.addVertex(IL);
@@ -33,10 +33,15 @@ public class Main {
         map.addVertex(VA);
         map.addVertex(NY);
 
+        map.addEdge(IL, TX);
         map.addEdge(IL, MO);
         map.addEdge(IL, CA);
-        map.addEdge(CA, TX);
-        map.addEdge(TX, GA);
+        map.addEdge(IL, GA);
+        map.addEdge(IL, VA);
+
+        map.addEdge(TX, MO);
+        map.addEdge(MO, GA);
+        map.addEdge(GA, NY);
         map.addEdge(GA, VA);
         map.addEdge(VA, NY);
 
@@ -67,14 +72,14 @@ public class Main {
         }
 
         System.out.println("RandomWalkIterator:");
-        final Iterator<String> rw = new RandomWalkIterator<>(map, IL, true, 6);
+        final Iterator<String> rw = new RandomWalkIterator<>(map, IL, true, 10 );
         while (rw.hasNext()) {
             final String state = rw.next();
             System.out.println(state);
         }
 
         System.out.println("");
-        System.out.println("Montana Starting Point");
+        System.out.println("Texas Starting Point");
         System.out.println("");
 
         System.out.println("BreadthFirstIterator:");
@@ -105,7 +110,7 @@ public class Main {
 
 
         System.out.println("RandomWalkIterator:");
-        final Iterator<String> rw2 = new RandomWalkIterator<>(map, TX, true, 6);
+        final Iterator<String> rw2 = new RandomWalkIterator<>(map, TX, true, 10);
         while (rw2.hasNext()) {
             final String state = rw2.next();
             System.out.println(state);
