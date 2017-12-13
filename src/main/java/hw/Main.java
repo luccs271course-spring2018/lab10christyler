@@ -33,17 +33,19 @@ public class Main {
         map.addVertex(VA);
         map.addVertex(NY);
 
-        map.addEdge(IL, TX);
         map.addEdge(IL, MO);
         map.addEdge(IL, CA);
+        map.addEdge(IL, TX);
         map.addEdge(IL, GA);
         map.addEdge(IL, VA);
+        map.addEdge(IL, NY);
 
-        map.addEdge(TX, MO);
         map.addEdge(MO, GA);
-        map.addEdge(GA, NY);
-        map.addEdge(GA, VA);
+        map.addEdge(GA, TX);
+        map.addEdge(TX, CA);
+        map.addEdge(CA, VA);
         map.addEdge(VA, NY);
+        map.addEdge(NY, MO);
 
         System.out.println(map);
 
@@ -72,11 +74,11 @@ public class Main {
         }
 
         System.out.println("RandomWalkIterator:");
-        final Iterator<String> rw = new RandomWalkIterator<>(map, IL, true, 10 );
+        final Iterator<String> rw = new RandomWalkIterator<>(map, IL, false, 12);
         while (rw.hasNext()) {
             final String state = rw.next();
             System.out.println(state);
-        }
+        }   
 
         System.out.println("");
         System.out.println("Texas Starting Point");
@@ -108,9 +110,8 @@ public class Main {
             System.out.println(state);
         }
 
-
         System.out.println("RandomWalkIterator:");
-        final Iterator<String> rw2 = new RandomWalkIterator<>(map, TX, true, 10);
+        final Iterator<String> rw2 = new RandomWalkIterator<>(map, TX, false, 12);
         while (rw2.hasNext()) {
             final String state = rw2.next();
             System.out.println(state);
