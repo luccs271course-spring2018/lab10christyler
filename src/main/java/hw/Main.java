@@ -78,7 +78,7 @@ public class Main {
         while (rw.hasNext()) {
             final String state = rw.next();
             System.out.println(state);
-        }   
+        }
 
         System.out.println("");
         System.out.println("Texas Starting Point");
